@@ -1,0 +1,22 @@
+# Data is large and re-downloadable -- never commit it. The manifest IS committed.
+data/raw/*
+!data/raw/manifest.json
+data/processed/
+data/warehouse/
+*.duckdb
+*.duckdb.wal
+*.part
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+# Power BI temp/backup files (the .pbix itself is committed once built)
+*.pbix.bak

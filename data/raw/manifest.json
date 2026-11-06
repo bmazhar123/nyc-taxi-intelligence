@@ -1,0 +1,20 @@
+{
+  "files": {
+    "taxi_zone_lookup.csv": {
+      "source_url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv",
+      "local_path": "data\\raw\\taxi_zone_lookup.csv",
+      "size_bytes": 12331,
+      "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+      "downloaded_at_utc": "2026-11-06T23:47:57+00:00"
+    },
+    "yellow_tripdata_2024-01.parquet": {
+      "source_url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet",
+      "local_path": "data\\raw\\yellow_tripdata_2024-01.parquet",
+      "size_bytes": 49961641,
+      "sha256": "c4d59da7bbc8abaeeeb1727947ee93d9891a71acb42854bd80db1571b2030510",
+      "downloaded_at_utc": "2026-11-06T23:47:59+00:00"
+    }
+  },
+  "data_dictionary_url": "https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf",
+  "landing_page": "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page"
+}

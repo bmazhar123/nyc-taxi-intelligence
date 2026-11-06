@@ -1,0 +1,80 @@
+{
+  "generated_at_utc": "2026-11-06T23:48:09+00:00",
+  "zone_lookup_found": true,
+  "zone_count": 265,
+  "total_rows": 2964624,
+  "type_drift": [],
+  "months": [
+    {
+      "month": "2024-01",
+      "file": "yellow_tripdata_2024-01.parquet",
+      "row_count": 2964624,
+      "nulls": {
+        "passenger_count": 140162,
+        "RatecodeID": 140162,
+        "store_and_fwd_flag": 140162,
+        "congestion_surcharge": 140162,
+        "Airport_fee": 140162
+      },
+      "exact_duplicate_rows": 0,
+      "min_pickup": "2002-12-31 22:59:39",
+      "max_pickup": "2024-02-01 00:01:15",
+      "checks": {
+        "pickup_outside_file_month": 18,
+        "dropoff_not_after_pickup": 870,
+        "duration_over_24h": 16,
+        "distance_zero": 60371,
+        "distance_negative": 0,
+        "passenger_count_zero": 31465,
+        "negative_fare_amount": 37448,
+        "negative_extra": 17548,
+        "negative_mta_tax": 34434,
+        "negative_tip_amount": 102,
+        "negative_tolls_amount": 2035,
+        "negative_improvement_surcharge": 35502,
+        "negative_total_amount": 35504,
+        "negative_congestion_surcharge": 28825,
+        "negative_airport_fee": 4921,
+        "total_amount_zero": 416,
+        "undocumented_VendorID": 0,
+        "undocumented_RatecodeID": 0,
+        "undocumented_payment_type": 0,
+        "undocumented_store_and_fwd_flag": 0,
+        "PULocationID_not_in_zone_lookup": 0,
+        "DOLocationID_not_in_zone_lookup": 0
+      },
+      "schema": {
+        "VendorID": "INTEGER",
+        "tpep_pickup_datetime": "TIMESTAMP",
+        "tpep_dropoff_datetime": "TIMESTAMP",
+        "passenger_count": "BIGINT",
+        "trip_distance": "DOUBLE",
+        "RatecodeID": "BIGINT",
+        "store_and_fwd_flag": "VARCHAR",
+        "PULocationID": "INTEGER",
+        "DOLocationID": "INTEGER",
+        "payment_type": "BIGINT",
+        "fare_amount": "DOUBLE",
+        "extra": "DOUBLE",
+        "mta_tax": "DOUBLE",
+        "tip_amount": "DOUBLE",
+        "tolls_amount": "DOUBLE",
+        "improvement_surcharge": "DOUBLE",
+        "total_amount": "DOUBLE",
+        "congestion_surcharge": "DOUBLE",
+        "Airport_fee": "DOUBLE"
+      },
+      "schema_vs_dictionary": {
+        "missing": [],
+        "unexpected": [],
+        "case_diffs": [
+          {
+            "dictionary": "airport_fee",
+            "file": "Airport_fee"
+          }
+        ],
+        "optional_present": []
+      }
+    }
+  ]
+}

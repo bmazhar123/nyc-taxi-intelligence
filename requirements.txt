@@ -1,0 +1,9 @@
+# Tested with Python 3.11+ (developed on 3.13). Install: pip install -r requirements.txt
+duckdb>=1.1
+pyarrow>=15
+pandas>=2.2
+requests>=2.31
+pytest>=8
+# Later phases (optional now):
+plotly>=5.20
+jupyter>=1.0
