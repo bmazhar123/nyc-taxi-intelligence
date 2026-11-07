@@ -1,0 +1,198 @@
+{
+  "generated_at_utc": "2026-11-07T00:28:00+00:00",
+  "raw_rows": 2964624,
+  "kept_rows": 2894474,
+  "excluded_rows": 70150,
+  "pct_kept": 97.6338,
+  "raw_total_amount": 79456384.28,
+  "kept_total_amount": 79475586.74,
+  "excluded_total_amount": -19202.46,
+  "per_month": [
+    {
+      "month": "2024-01",
+      "raw": 2964624,
+      "kept": 2894474
+    }
+  ],
+  "rules": [
+    {
+      "rule": "outside_file_month",
+      "rows_removed": 18,
+      "rows_matching_any_order": 18,
+      "pct_of_raw": 0.0006,
+      "total_amount_removed": 442.78,
+      "why": "Pickup is not in the month the file covers. Phase 1 found bad clocks (2002, 2009) and boundary trips that belong to the previous/next month; keeping them would double-count once neighbouring months are loaded."
+    },
+    {
+      "rule": "exact_duplicate",
+      "rows_removed": 0,
+      "rows_matching_any_order": 0,
+      "pct_of_raw": 0.0,
+      "total_amount_removed": 0,
+      "why": "Every field identical to an earlier row. The first copy is kept."
+    },
+    {
+      "rule": "reversal_pair",
+      "rows_removed": 61342,
+      "rows_matching_any_order": 61344,
+      "pct_of_raw": 2.0691,
+      "total_amount_removed": 0.0,
+      "why": "A negative row that exactly cancels a positive row (same vendor, times, zones, distance, and opposite total_amount), e.g. the -$10.50/+$10.50 pair in Phase 1. BOTH rows are removed: the charge was reversed, so the trip contributed no money, and keeping only the positive row would overstate revenue."
+    },
+    {
+      "rule": "nonpositive_duration",
+      "rows_removed": 862,
+      "rows_matching_any_order": 870,
+      "pct_of_raw": 0.0291,
+      "total_amount_removed": 42009.59,
+      "why": "Drop-off at or before pickup is physically impossible."
+    },
+    {
+      "rule": "duration_over_limit",
+      "rows_removed": 14,
+      "rows_matching_any_order": 16,
+      "pct_of_raw": 0.0005,
+      "total_amount_removed": 2683.06,
+      "why": "Longer than 24 hours is not a single taxi trip."
+    },
+    {
+      "rule": "unmatched_negative_amount",
+      "rows_removed": 6903,
+      "rows_matching_any_order": 37578,
+      "pct_of_raw": 0.2328,
+      "total_amount_removed": -112574.01,
+      "why": "A negative money value with no matching original charge. It cannot be interpreted (refund of what?), and mixing it into sums would understate amounts."
+    },
+    {
+      "rule": "implausible_speed",
+      "rows_removed": 1011,
+      "rows_matching_any_order": 1024,
+      "pct_of_raw": 0.0341,
+      "total_amount_removed": 48236.12,
+      "why": "Average speed above 100 mph: distance and/or times are wrong."
+    }
+  ],
+  "flags_on_kept_rows": {
+    "flag_flex_fare_incomplete": 137921,
+    "flag_zero_distance": 53135,
+    "flag_passenger_unknown": 169194,
+    "flag_catchall_zone": 29618,
+    "flag_zero_total": 346
+  },
+  "reversal_matching": {
+    "negative_total_rows": 35504,
+    "negative_rows_paired": 30672,
+    "pct_paired": 86.39
+  },
+  "flex_fare_check": {
+    "payment_type_0_rows": 140162,
+    "payment_type_0_with_passenger_count": 0
+  },
+  "distributions_kept": {
+    "trip_distance": {
+      "p50": 1.69,
+      "p95": 13.6,
+      "p99": 19.97,
+      "p99_9": 29.3,
+      "max": 233.25
+    },
+    "trip_duration_minutes": {
+      "p50": 11.7,
+      "p95": 37.98,
+      "p99": 60.52,
+      "p99_9": 115.38,
+      "max": 1439.98
+    },
+    "fare_amount": {
+      "p50": 12.8,
+      "p95": 61.8,
+      "p99": 75.8,
+      "p99_9": 143.4,
+      "max": 1616.5
+    },
+    "total_amount": {
+      "p50": 20.16,
+      "p95": 80.45,
+      "p99": 103.36,
+      "p99_9": 174.79,
+      "max": 1617.5
+    }
+  },
+  "zero_distance_by_ratecode": [
+    {
+      "ratecode_id": null,
+      "rows": 22746,
+      "avg_fare": 20.21
+    },
+    {
+      "ratecode_id": 1,
+      "rows": 17328,
+      "avg_fare": 10.27
+    },
+    {
+      "ratecode_id": 5,
+      "rows": 9267,
+      "avg_fare": 61.87
+    },
+    {
+      "ratecode_id": 2,
+      "rows": 1972,
+      "avg_fare": 69.86
+    },
+    {
+      "ratecode_id": 99,
+      "rows": 1485,
+      "avg_fare": 33.78
+    },
+    {
+      "ratecode_id": 3,
+      "rows": 309,
+      "avg_fare": 24.57
+    },
+    {
+      "ratecode_id": 4,
+      "rows": 26,
+      "avg_fare": 8.9
+    },
+    {
+      "ratecode_id": 6,
+      "rows": 2,
+      "avg_fare": 3.0
+    }
+  ],
+  "schema_events": [
+    {
+      "file": "yellow_tripdata_2024-01.parquet",
+      "raw_columns": 19,
+      "renamed_by_case": [
+        {
+          "dictionary": "airport_fee",
+          "file": "Airport_fee"
+        }
+      ],
+      "dropped_unexpected": [],
+      "filled_with_null": [
+        "cbd_congestion_fee"
+      ],
+      "type_casts": {
+        "passenger_count": "BIGINT",
+        "RatecodeID": "BIGINT",
+        "payment_type": "BIGINT"
+      }
+    }
+  ],
+  "thresholds": {
+    "max_duration_hours": 24,
+    "max_speed_mph": 100,
+    "catchall_zone_ids": [
+      264,
+      265
+    ]
+  },
+  "reconciliation": {
+    "rows: raw = kept + excluded": true,
+    "rows: excluded = sum of rule counts": true,
+    "amount: raw = kept + excluded (cents)": true,
+    "every kept row has a pickup in its file month": true
+  }
+}

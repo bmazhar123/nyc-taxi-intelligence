@@ -1,6 +1,6 @@
 # NYC Taxi Intelligence: Revenue, Demand & Operations Analytics
 
-> **Status:** Phase 1 of 8 — ingestion and raw-data inspection. Findings, dashboard, and results will be added as they are actually produced.
+> **Status:** Phase 2 of 8 — ingestion, raw-data inspection, and logged cleaning. Findings, dashboard, and results will be added as they are actually produced.
 
 A portfolio analytics project using official NYC TLC yellow-taxi trip records (January–June 2024) to analyse trip demand, recorded fare amounts, geographic patterns, and operational efficiency for a *hypothetical* operations team. This is a simulation and is not affiliated with the NYC Taxi & Limousine Commission.
 
@@ -16,6 +16,7 @@ pip install -r requirements.txt
 pytest -q                      # unit tests (synthetic fixtures)
 python -m src.download         # sample: January 2024 + zone lookup
 python -m src.inspect_data     # writes reports/phase1_inspection.md
+python -m src.clean            # writes data/processed/ + reports/phase2_cleaning_log.md
 python -m src.download --full  # scale up to Jan–Jun 2024 when ready
 ```
 
@@ -28,7 +29,7 @@ python -m src.download --full  # scale up to Jan–Jun 2024 when ready
 ## Project structure
 
 ```
-src/          Python pipeline (config, download, inspection; later cleaning & build)
+src/          Python pipeline (config, download, inspection, cleaning)
 sql/          Analytical SQL queries and views
 tests/        pytest suite
 notebooks/    Exploratory notebooks

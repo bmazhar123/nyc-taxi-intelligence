@@ -109,3 +109,43 @@ PAYMENT_TYPE_CODES = {
     4: "Dispute", 5: "Unknown", 6: "Voided trip",
 }
 STORE_AND_FWD_CODES = {"Y": "store and forward trip", "N": "not a store and forward trip"}
+
+# --------------------------------------------------------------------------
+# Phase 2 -- harmonised schema and cleaning thresholds
+# --------------------------------------------------------------------------
+# Dictionary name -> (clean snake_case name, target type). Every month is
+# forced into exactly this shape, whatever capitalisation or numeric type
+# the raw file used. Order here is the column order of the cleaned output.
+HARMONIZED_SCHEMA = {
+    "VendorID": ("vendor_id", "INTEGER"),
+    "tpep_pickup_datetime": ("pickup_datetime", "TIMESTAMP"),
+    "tpep_dropoff_datetime": ("dropoff_datetime", "TIMESTAMP"),
+    "passenger_count": ("passenger_count", "INTEGER"),
+    "trip_distance": ("trip_distance", "DOUBLE"),
+    "RatecodeID": ("ratecode_id", "INTEGER"),
+    "store_and_fwd_flag": ("store_and_fwd_flag", "VARCHAR"),
+    "PULocationID": ("pu_location_id", "INTEGER"),
+    "DOLocationID": ("do_location_id", "INTEGER"),
+    "payment_type": ("payment_type", "INTEGER"),
+    "fare_amount": ("fare_amount", "DOUBLE"),
+    "extra": ("extra", "DOUBLE"),
+    "mta_tax": ("mta_tax", "DOUBLE"),
+    "tip_amount": ("tip_amount", "DOUBLE"),
+    "tolls_amount": ("tolls_amount", "DOUBLE"),
+    "improvement_surcharge": ("improvement_surcharge", "DOUBLE"),
+    "total_amount": ("total_amount", "DOUBLE"),
+    "congestion_surcharge": ("congestion_surcharge", "DOUBLE"),
+    "airport_fee": ("airport_fee", "DOUBLE"),
+    "cbd_congestion_fee": ("cbd_congestion_fee", "DOUBLE"),
+}
+# Without these the pipeline cannot work at all, so a file missing one of
+# them stops the run. Any other missing column is filled with NULL and logged.
+CORE_COLUMNS = [
+    "tpep_pickup_datetime", "tpep_dropoff_datetime", "PULocationID", "DOLocationID",
+    "trip_distance", "fare_amount", "total_amount",
+]
+CLEAN_MONEY_COLUMNS = [HARMONIZED_SCHEMA[c][0] for c in MONEY_COLUMNS] + ["cbd_congestion_fee"]
+
+MAX_DURATION_HOURS = 24     # longer than a day is not a single taxi trip
+MAX_SPEED_MPH = 100         # average speed above this is physically implausible in NYC
+CATCHALL_ZONE_IDS = (264, 265)  # "Unknown" and "Outside of NYC" in the zone lookup
