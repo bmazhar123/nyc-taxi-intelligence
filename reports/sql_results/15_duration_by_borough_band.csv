@@ -1,0 +1,21 @@
+pu_borough,time_band,trips,median_min,p90_min,median_miles
+Bronx,Overnight,6140,21.7,53.8,5.98
+Bronx,AM peak,18838,33.2,74.4,6.3
+Bronx,Midday,19308,33.0,77.0,6.0
+Bronx,PM peak,7843,26.1,72.9,4.6
+Bronx,Evening,5534,17.6,36.3,4.68
+Brooklyn,Overnight,37257,18.8,36.7,4.35
+Brooklyn,AM peak,57776,30.9,73.9,5.14
+Brooklyn,Midday,70029,29.0,70.4,4.1
+Brooklyn,PM peak,38757,23.4,56.5,3.48
+Brooklyn,Evening,43299,18.9,34.1,3.78
+Manhattan,Overnight,1392198,10.4,22.2,1.93
+Manhattan,AM peak,2144835,10.8,24.2,1.6
+Manhattan,Midday,5689464,12.5,28.4,1.5
+Manhattan,PM peak,4713326,12.0,26.6,1.52
+Manhattan,Evening,3710354,11.4,23.4,1.8
+Queens,Overnight,125131,23.9,41.1,11.11
+Queens,AM peak,198505,36.3,68.7,11.29
+Queens,Midday,554118,37.8,65.9,10.62
+Queens,PM peak,446060,37.9,64.2,11.5
+Queens,Evening,411814,27.0,44.8,11.29

@@ -1,0 +1,21 @@
+vendor_name,ratecode_name,pu_borough,card_trips,pct_tipped,tip_pct_of_fare,pct_of_all_card_trips
+"Creative Mobile Technologies, LLC",Null/unknown,Brooklyn,81880,0.0,0.0,0.54
+"Creative Mobile Technologies, LLC",Null/unknown,Manhattan,62336,0.0,0.0,0.41
+"Creative Mobile Technologies, LLC",Null/unknown,Queens,39432,0.0,0.0,0.26
+"Creative Mobile Technologies, LLC",Null/unknown,Bronx,29510,0.0,0.0,0.2
+"Creative Mobile Technologies, LLC",Standard rate,Bronx,1296,20.1,4.5,0.01
+"Curb Mobility, LLC",Negotiated fare,N/A,4555,65.1,10.4,0.03
+"Curb Mobility, LLC",Negotiated fare,EWR,1784,68.9,12.3,0.01
+"Curb Mobility, LLC",Negotiated fare,Brooklyn,3454,72.4,13.2,0.02
+"Creative Mobile Technologies, LLC",Standard rate,Brooklyn,9821,72.8,15.6,0.07
+"Curb Mobility, LLC",Standard rate,Bronx,1272,75.3,23.1,0.01
+"Creative Mobile Technologies, LLC",Negotiated fare,Manhattan,9863,79.6,15.3,0.07
+"Curb Mobility, LLC",Negotiated fare,Manhattan,48035,80.9,15.6,0.32
+"Creative Mobile Technologies, LLC",Negotiated fare,Queens,4035,82.4,14.5,0.03
+"Curb Mobility, LLC",Negotiated fare,Queens,31348,84.1,15.1,0.21
+"Curb Mobility, LLC",Negotiated fare,Unknown,1143,84.4,15.2,0.01
+"Creative Mobile Technologies, LLC",Nassau or Westchester,Queens,3787,85.9,14.8,0.03
+"Curb Mobility, LLC",Nassau or Westchester,Queens,20221,87.0,14.7,0.13
+"Curb Mobility, LLC",Nassau or Westchester,Manhattan,5171,87.0,16.8,0.03
+"Curb Mobility, LLC",Newark,Queens,4179,88.8,17.0,0.03
+"Creative Mobile Technologies, LLC",Newark,Manhattan,8275,92.2,19.8,0.05

@@ -1,0 +1,16 @@
+pu_borough,time_band,card_trips,tip_pct_of_fare,pct_trips_tipped,median_tip
+Brooklyn,Overnight,7982,19.3,85.1,3.8
+Brooklyn,AM peak,6523,17.8,84.0,4.34
+Brooklyn,Midday,9839,17.6,81.8,3.7
+Brooklyn,PM peak,9155,20.1,89.7,3.78
+Brooklyn,Evening,11386,20.6,91.4,3.76
+Manhattan,Overnight,1002978,22.6,92.3,3.0
+Manhattan,AM peak,1608832,23.0,96.7,2.9
+Manhattan,Midday,4362467,23.0,96.7,3.05
+Manhattan,PM peak,3679436,24.7,96.5,3.3
+Manhattan,Evening,2827747,23.9,96.2,3.14
+Queens,Overnight,83737,18.9,92.0,10.29
+Queens,AM peak,132916,19.8,93.1,11.98
+Queens,Midday,416618,20.9,94.0,12.0
+Queens,PM peak,345505,21.2,94.2,12.13
+Queens,Evening,325123,20.4,94.4,10.99

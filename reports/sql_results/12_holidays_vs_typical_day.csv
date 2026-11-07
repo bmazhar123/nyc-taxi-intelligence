@@ -1,0 +1,6 @@
+pickup_date,holiday_name,day_name,trips,typical_trips_same_weekday,baseline_days,pct_vs_typical
+2024-01-01,New Year's Day,Monday,78606,81354.0,3,-3.4
+2024-01-15,Martin Luther King Jr. Day,Monday,75271,81354.0,3,-7.5
+2024-02-19,Presidents' Day,Monday,73982,86739.0,3,-14.7
+2024-05-27,Memorial Day,Monday,70191,103961.0,3,-32.5
+2024-06-19,Juneteenth,Wednesday,100060,126350.0,3,-20.8

@@ -1,0 +1,4 @@
+trip_type,trips,pct_of_trips,pct_of_total_amount,avg_total_amount,avg_distance_mi,avg_duration_min,tip_pct_of_fare_card
+Non-airport,17872352,90.4,73.2,22.82,2.23,13.9,23.6
+From airport,1483211,7.5,20.4,76.59,13.2,37.2,20.6
+To airport,423201,2.1,6.4,84.76,13.84,40.2,21.7

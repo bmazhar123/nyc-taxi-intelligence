@@ -43,7 +43,7 @@ TABLES = {
             "airport_fee": "Fee for pickups at LaGuardia and JFK. NULL = not recorded (not $0).",
             "cbd_congestion_fee": "MTA Congestion Relief Zone charge (2025+ files only); NULL before 2025.",
             "total_amount": LIMIT_TOTAL,
-            "is_credit_card": "True when payment_type = 1. Tip-rate metrics should use only these trips.",
+            "is_credit_card": "True when payment_type = 1. Tip-rate metrics use only these trips, excluding rate code 99, whose card trips record no tips at all (see sql/analysis/17).",
             "flag_flex_fare_incomplete": "Flex Fare trip (payment_type 0) reported without passenger count, rate code and some surcharges.",
             "flag_zero_distance": "Meter recorded 0 miles. Often legitimate for flat-rate fares (JFK, negotiated).",
             "flag_passenger_unknown": "passenger_count is NULL or 0; exclude from per-passenger metrics.",

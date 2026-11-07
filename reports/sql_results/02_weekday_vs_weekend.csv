@@ -1,0 +1,3 @@
+day_type,days,avg_trips_per_day,avg_fare,avg_distance_mi,avg_duration_min,fare_per_mile_std_rate,tip_pct_of_fare_card,airport_trip_pct
+Weekend,52,106252.0,19.18,3.35,15.1,5.96,22.1,9.2
+Weekday,130,109643.0,19.48,3.29,16.7,6.3,23.0,9.8

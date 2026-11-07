@@ -1,0 +1,21 @@
+pu_borough,do_borough,trips,pct_of_all_trips,pct_of_origin_trips
+Manhattan,Manhattan,16599099,84.76,94.4
+Queens,Manhattan,1013971,5.18,60.1
+Manhattan,Queens,527038,2.69,3.0
+Queens,Queens,382569,1.95,22.7
+Manhattan,Brooklyn,361693,1.85,2.1
+Queens,Brooklyn,251367,1.28,14.9
+Brooklyn,Brooklyn,128970,0.66,52.3
+Brooklyn,Manhattan,82483,0.42,33.4
+Manhattan,Bronx,54114,0.28,0.3
+Manhattan,EWR,46548,0.24,0.3
+Queens,Bronx,35229,0.18,2.1
+Brooklyn,Queens,29377,0.15,11.9
+Bronx,Manhattan,26371,0.13,45.9
+Bronx,Bronx,21076,0.11,36.7
+Brooklyn,Bronx,5292,0.03,2.1
+Bronx,Brooklyn,5042,0.03,8.8
+Bronx,Queens,4982,0.03,8.7
+EWR,EWR,2147,0.01,97.4
+Queens,Staten Island,1920,0.01,0.1
+Queens,EWR,1779,0.01,0.1

@@ -167,3 +167,9 @@ ZONE_LOOKUP_PATH = RAW_DIR / "taxi_zone_lookup.csv"
 # flagged so duration metrics can exclude them.
 LONG_DURATION_MINUTES = 180
 UNKNOWN_KEY = -1  # dimension row used when a code is NULL ("Not recorded")
+
+# --------------------------------------------------------------------------
+# Phase 4 -- SQL analysis
+# --------------------------------------------------------------------------
+SQL_DIR = PROJECT_ROOT / "sql"
+SQL_RESULTS_DIR = REPORTS_DIR / "sql_results"
