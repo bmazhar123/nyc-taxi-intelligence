@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-11-06T23:48:09+00:00",
+  "generated_at_utc": "2026-11-07T01:40:09+00:00",
   "zone_lookup_found": true,
   "zone_count": 265,
-  "total_rows": 2964624,
+  "total_rows": 20332093,
   "type_drift": [],
   "months": [
     {
@@ -36,6 +36,361 @@
         "negative_congestion_surcharge": 28825,
         "negative_airport_fee": 4921,
         "total_amount_zero": 416,
+        "undocumented_VendorID": 0,
+        "undocumented_RatecodeID": 0,
+        "undocumented_payment_type": 0,
+        "undocumented_store_and_fwd_flag": 0,
+        "PULocationID_not_in_zone_lookup": 0,
+        "DOLocationID_not_in_zone_lookup": 0
+      },
+      "schema": {
+        "VendorID": "INTEGER",
+        "tpep_pickup_datetime": "TIMESTAMP",
+        "tpep_dropoff_datetime": "TIMESTAMP",
+        "passenger_count": "BIGINT",
+        "trip_distance": "DOUBLE",
+        "RatecodeID": "BIGINT",
+        "store_and_fwd_flag": "VARCHAR",
+        "PULocationID": "INTEGER",
+        "DOLocationID": "INTEGER",
+        "payment_type": "BIGINT",
+        "fare_amount": "DOUBLE",
+        "extra": "DOUBLE",
+        "mta_tax": "DOUBLE",
+        "tip_amount": "DOUBLE",
+        "tolls_amount": "DOUBLE",
+        "improvement_surcharge": "DOUBLE",
+        "total_amount": "DOUBLE",
+        "congestion_surcharge": "DOUBLE",
+        "Airport_fee": "DOUBLE"
+      },
+      "schema_vs_dictionary": {
+        "missing": [],
+        "unexpected": [],
+        "case_diffs": [
+          {
+            "dictionary": "airport_fee",
+            "file": "Airport_fee"
+          }
+        ],
+        "optional_present": []
+      }
+    },
+    {
+      "month": "2024-02",
+      "file": "yellow_tripdata_2024-02.parquet",
+      "row_count": 3007526,
+      "nulls": {
+        "passenger_count": 185610,
+        "RatecodeID": 185610,
+        "store_and_fwd_flag": 185610,
+        "congestion_surcharge": 185610,
+        "Airport_fee": 185610
+      },
+      "exact_duplicate_rows": 1,
+      "min_pickup": "2008-12-31 22:52:49",
+      "max_pickup": "2024-03-01 00:01:37",
+      "checks": {
+        "pickup_outside_file_month": 15,
+        "dropoff_not_after_pickup": 803,
+        "duration_over_24h": 12,
+        "distance_zero": 68225,
+        "distance_negative": 0,
+        "passenger_count_zero": 34094,
+        "negative_fare_amount": 40655,
+        "negative_extra": 18097,
+        "negative_mta_tax": 35052,
+        "negative_tip_amount": 109,
+        "negative_tolls_amount": 2260,
+        "negative_improvement_surcharge": 36078,
+        "negative_total_amount": 36080,
+        "negative_congestion_surcharge": 29866,
+        "negative_airport_fee": 4801,
+        "total_amount_zero": 438,
+        "undocumented_VendorID": 0,
+        "undocumented_RatecodeID": 0,
+        "undocumented_payment_type": 0,
+        "undocumented_store_and_fwd_flag": 0,
+        "PULocationID_not_in_zone_lookup": 0,
+        "DOLocationID_not_in_zone_lookup": 0
+      },
+      "schema": {
+        "VendorID": "INTEGER",
+        "tpep_pickup_datetime": "TIMESTAMP",
+        "tpep_dropoff_datetime": "TIMESTAMP",
+        "passenger_count": "BIGINT",
+        "trip_distance": "DOUBLE",
+        "RatecodeID": "BIGINT",
+        "store_and_fwd_flag": "VARCHAR",
+        "PULocationID": "INTEGER",
+        "DOLocationID": "INTEGER",
+        "payment_type": "BIGINT",
+        "fare_amount": "DOUBLE",
+        "extra": "DOUBLE",
+        "mta_tax": "DOUBLE",
+        "tip_amount": "DOUBLE",
+        "tolls_amount": "DOUBLE",
+        "improvement_surcharge": "DOUBLE",
+        "total_amount": "DOUBLE",
+        "congestion_surcharge": "DOUBLE",
+        "Airport_fee": "DOUBLE"
+      },
+      "schema_vs_dictionary": {
+        "missing": [],
+        "unexpected": [],
+        "case_diffs": [
+          {
+            "dictionary": "airport_fee",
+            "file": "Airport_fee"
+          }
+        ],
+        "optional_present": []
+      }
+    },
+    {
+      "month": "2024-03",
+      "file": "yellow_tripdata_2024-03.parquet",
+      "row_count": 3582628,
+      "nulls": {
+        "passenger_count": 426190,
+        "RatecodeID": 426190,
+        "store_and_fwd_flag": 426190,
+        "congestion_surcharge": 426190,
+        "Airport_fee": 426190
+      },
+      "exact_duplicate_rows": 0,
+      "min_pickup": "2002-12-31 22:17:10",
+      "max_pickup": "2024-04-01 00:34:55",
+      "checks": {
+        "pickup_outside_file_month": 23,
+        "dropoff_not_after_pickup": 1128,
+        "duration_over_24h": 20,
+        "distance_zero": 87168,
+        "distance_negative": 0,
+        "passenger_count_zero": 40372,
+        "negative_fare_amount": 58464,
+        "negative_extra": 22219,
+        "negative_mta_tax": 42921,
+        "negative_tip_amount": 119,
+        "negative_tolls_amount": 3291,
+        "negative_improvement_surcharge": 44304,
+        "negative_total_amount": 44311,
+        "negative_congestion_surcharge": 36422,
+        "negative_airport_fee": 6547,
+        "total_amount_zero": 438,
+        "undocumented_VendorID": 0,
+        "undocumented_RatecodeID": 0,
+        "undocumented_payment_type": 0,
+        "undocumented_store_and_fwd_flag": 0,
+        "PULocationID_not_in_zone_lookup": 0,
+        "DOLocationID_not_in_zone_lookup": 0
+      },
+      "schema": {
+        "VendorID": "INTEGER",
+        "tpep_pickup_datetime": "TIMESTAMP",
+        "tpep_dropoff_datetime": "TIMESTAMP",
+        "passenger_count": "BIGINT",
+        "trip_distance": "DOUBLE",
+        "RatecodeID": "BIGINT",
+        "store_and_fwd_flag": "VARCHAR",
+        "PULocationID": "INTEGER",
+        "DOLocationID": "INTEGER",
+        "payment_type": "BIGINT",
+        "fare_amount": "DOUBLE",
+        "extra": "DOUBLE",
+        "mta_tax": "DOUBLE",
+        "tip_amount": "DOUBLE",
+        "tolls_amount": "DOUBLE",
+        "improvement_surcharge": "DOUBLE",
+        "total_amount": "DOUBLE",
+        "congestion_surcharge": "DOUBLE",
+        "Airport_fee": "DOUBLE"
+      },
+      "schema_vs_dictionary": {
+        "missing": [],
+        "unexpected": [],
+        "case_diffs": [
+          {
+            "dictionary": "airport_fee",
+            "file": "Airport_fee"
+          }
+        ],
+        "optional_present": []
+      }
+    },
+    {
+      "month": "2024-04",
+      "file": "yellow_tripdata_2024-04.parquet",
+      "row_count": 3514289,
+      "nulls": {
+        "passenger_count": 408576,
+        "RatecodeID": 408576,
+        "store_and_fwd_flag": 408576,
+        "congestion_surcharge": 408576,
+        "Airport_fee": 408576
+      },
+      "exact_duplicate_rows": 0,
+      "min_pickup": "2002-12-31 22:10:04",
+      "max_pickup": "2024-05-01 00:02:36",
+      "checks": {
+        "pickup_outside_file_month": 9,
+        "dropoff_not_after_pickup": 1089,
+        "duration_over_24h": 26,
+        "distance_zero": 45813,
+        "distance_negative": 0,
+        "passenger_count_zero": 39591,
+        "negative_fare_amount": 57568,
+        "negative_extra": 22072,
+        "negative_mta_tax": 42299,
+        "negative_tip_amount": 153,
+        "negative_tolls_amount": 3362,
+        "negative_improvement_surcharge": 43749,
+        "negative_total_amount": 43749,
+        "negative_congestion_surcharge": 35390,
+        "negative_airport_fee": 6983,
+        "total_amount_zero": 417,
+        "undocumented_VendorID": 0,
+        "undocumented_RatecodeID": 0,
+        "undocumented_payment_type": 0,
+        "undocumented_store_and_fwd_flag": 0,
+        "PULocationID_not_in_zone_lookup": 0,
+        "DOLocationID_not_in_zone_lookup": 0
+      },
+      "schema": {
+        "VendorID": "INTEGER",
+        "tpep_pickup_datetime": "TIMESTAMP",
+        "tpep_dropoff_datetime": "TIMESTAMP",
+        "passenger_count": "BIGINT",
+        "trip_distance": "DOUBLE",
+        "RatecodeID": "BIGINT",
+        "store_and_fwd_flag": "VARCHAR",
+        "PULocationID": "INTEGER",
+        "DOLocationID": "INTEGER",
+        "payment_type": "BIGINT",
+        "fare_amount": "DOUBLE",
+        "extra": "DOUBLE",
+        "mta_tax": "DOUBLE",
+        "tip_amount": "DOUBLE",
+        "tolls_amount": "DOUBLE",
+        "improvement_surcharge": "DOUBLE",
+        "total_amount": "DOUBLE",
+        "congestion_surcharge": "DOUBLE",
+        "Airport_fee": "DOUBLE"
+      },
+      "schema_vs_dictionary": {
+        "missing": [],
+        "unexpected": [],
+        "case_diffs": [
+          {
+            "dictionary": "airport_fee",
+            "file": "Airport_fee"
+          }
+        ],
+        "optional_present": []
+      }
+    },
+    {
+      "month": "2024-05",
+      "file": "yellow_tripdata_2024-05.parquet",
+      "row_count": 3723833,
+      "nulls": {
+        "passenger_count": 404666,
+        "RatecodeID": 404666,
+        "store_and_fwd_flag": 404666,
+        "congestion_surcharge": 404666,
+        "Airport_fee": 404666
+      },
+      "exact_duplicate_rows": 0,
+      "min_pickup": "2002-12-31 16:46:07",
+      "max_pickup": "2024-06-01 23:54:14",
+      "checks": {
+        "pickup_outside_file_month": 33,
+        "dropoff_not_after_pickup": 1147,
+        "duration_over_24h": 15,
+        "distance_zero": 49791,
+        "distance_negative": 0,
+        "passenger_count_zero": 39748,
+        "negative_fare_amount": 59947,
+        "negative_extra": 24776,
+        "negative_mta_tax": 47271,
+        "negative_tip_amount": 114,
+        "negative_tolls_amount": 3931,
+        "negative_improvement_surcharge": 48966,
+        "negative_total_amount": 48992,
+        "negative_congestion_surcharge": 39980,
+        "negative_airport_fee": 7677,
+        "total_amount_zero": 379,
+        "undocumented_VendorID": 0,
+        "undocumented_RatecodeID": 0,
+        "undocumented_payment_type": 0,
+        "undocumented_store_and_fwd_flag": 0,
+        "PULocationID_not_in_zone_lookup": 0,
+        "DOLocationID_not_in_zone_lookup": 0
+      },
+      "schema": {
+        "VendorID": "INTEGER",
+        "tpep_pickup_datetime": "TIMESTAMP",
+        "tpep_dropoff_datetime": "TIMESTAMP",
+        "passenger_count": "BIGINT",
+        "trip_distance": "DOUBLE",
+        "RatecodeID": "BIGINT",
+        "store_and_fwd_flag": "VARCHAR",
+        "PULocationID": "INTEGER",
+        "DOLocationID": "INTEGER",
+        "payment_type": "BIGINT",
+        "fare_amount": "DOUBLE",
+        "extra": "DOUBLE",
+        "mta_tax": "DOUBLE",
+        "tip_amount": "DOUBLE",
+        "tolls_amount": "DOUBLE",
+        "improvement_surcharge": "DOUBLE",
+        "total_amount": "DOUBLE",
+        "congestion_surcharge": "DOUBLE",
+        "Airport_fee": "DOUBLE"
+      },
+      "schema_vs_dictionary": {
+        "missing": [],
+        "unexpected": [],
+        "case_diffs": [
+          {
+            "dictionary": "airport_fee",
+            "file": "Airport_fee"
+          }
+        ],
+        "optional_present": []
+      }
+    },
+    {
+      "month": "2024-06",
+      "file": "yellow_tripdata_2024-06.parquet",
+      "row_count": 3539193,
+      "nulls": {
+        "passenger_count": 410781,
+        "RatecodeID": 410781,
+        "store_and_fwd_flag": 410781,
+        "congestion_surcharge": 410781,
+        "Airport_fee": 410781
+      },
+      "exact_duplicate_rows": 0,
+      "min_pickup": "2008-12-31 00:00:00",
+      "max_pickup": "2026-06-26 23:53:12",
+      "checks": {
+        "pickup_outside_file_month": 51,
+        "dropoff_not_after_pickup": 1140,
+        "duration_over_24h": 20,
+        "distance_zero": 52954,
+        "distance_negative": 0,
+        "passenger_count_zero": 35839,
+        "negative_fare_amount": 61665,
+        "negative_extra": 24140,
+        "negative_mta_tax": 46864,
+        "negative_tip_amount": 108,
+        "negative_tolls_amount": 3872,
+        "negative_improvement_surcharge": 48555,
+        "negative_total_amount": 48795,
+        "negative_congestion_surcharge": 39893,
+        "negative_airport_fee": 7766,
+        "total_amount_zero": 316,
         "undocumented_VendorID": 0,
         "undocumented_RatecodeID": 0,
         "undocumented_payment_type": 0,

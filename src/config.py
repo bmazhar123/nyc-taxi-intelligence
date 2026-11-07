@@ -149,3 +149,21 @@ CLEAN_MONEY_COLUMNS = [HARMONIZED_SCHEMA[c][0] for c in MONEY_COLUMNS] + ["cbd_c
 MAX_DURATION_HOURS = 24     # longer than a day is not a single taxi trip
 MAX_SPEED_MPH = 100         # average speed above this is physically implausible in NYC
 CATCHALL_ZONE_IDS = (264, 265)  # "Unknown" and "Outside of NYC" in the zone lookup
+# Implausible-amount rule (added after the six-month run found a $334,145 trip).
+# The legitimate expensive trips reviewed ran $3.6-$25.5 per mile (long
+# Nassau/Westchester and negotiated trips). The floor keeps normal flat-rate
+# airport and zero-distance fares (avg $62-$70) well clear of the rule.
+AMOUNT_REVIEW_FLOOR = 250       # only trips charging more than this are tested
+MAX_AMOUNT_PER_MILE = 50        # ~2x the highest plausible rate seen
+
+# --------------------------------------------------------------------------
+# Phase 3 -- warehouse
+# --------------------------------------------------------------------------
+WAREHOUSE_PATH = WAREHOUSE_DIR / "taxi.duckdb"
+DOCS_DIR = PROJECT_ROOT / "docs"
+ZONE_LOOKUP_PATH = RAW_DIR / "taxi_zone_lookup.csv"
+# Phase 2 showed 99.9% of kept trips finish within ~2 hours, yet some run
+# almost 24h (likely meters left running). They stay in the data but are
+# flagged so duration metrics can exclude them.
+LONG_DURATION_MINUTES = 180
+UNKNOWN_KEY = -1  # dimension row used when a code is NULL ("Not recorded")

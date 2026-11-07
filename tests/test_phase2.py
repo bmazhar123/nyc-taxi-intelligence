@@ -128,3 +128,19 @@ def test_excluded_file_is_auditable(cleaned):
         f"GROUP BY 1").fetchall())
     assert sum(reasons.values()) == 9
     assert None not in reasons
+
+
+def test_implausible_amount_rule(tmp_path):
+    """High charges are removed only when they make no sense for the distance."""
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    pq.write_table(make_trips([
+        {"trip_distance": 0.0, "total_amount": 334145.3, "fare_amount": 334076.32},   # removed
+        {"trip_distance": 0.26, "total_amount": 1001.5, "fare_amount": 998.0},        # removed: $3,852/mile
+        {"trip_distance": 233.25, "total_amount": 1617.5, "fare_amount": 1616.5,
+         "tpep_dropoff_datetime": D(2024, 1, 10, 11, 40)},                             # kept: long real trip
+        {"trip_distance": 0.0, "total_amount": 70.0, "RatecodeID": 2},                # kept: JFK flat fare
+    ]), raw / "yellow_tripdata_2024-01.parquet")
+    log = run(raw, tmp_path / "processed", tmp_path / "reports")
+    assert removed(log, "implausible_amount") == 2
+    assert log["kept_rows"] == 2

@@ -92,6 +92,14 @@ RULES = [
                f"AND trip_distance / (duration_sec / 3600.0) > {config.MAX_SPEED_MPH}",
         "why": f"Average speed above {config.MAX_SPEED_MPH} mph: distance and/or times are wrong.",
     },
+    {
+        "name": "implausible_amount",
+        "sql": f"total_amount > {config.AMOUNT_REVIEW_FLOOR} AND (trip_distance <= 0 "
+               f"OR total_amount / trip_distance > {config.MAX_AMOUNT_PER_MILE})",
+        "why": f"Charged over ${config.AMOUNT_REVIEW_FLOOR} with zero distance or more than "
+               f"${config.MAX_AMOUNT_PER_MILE}/mile (e.g. $334,145 for a 0-mile, 3-minute trip). "
+               f"Legitimate expensive trips reviewed ran $3.6-$25.5/mile.",
+    },
 ]
 
 # Kept rows carry these flags so each metric can decide what to include.
