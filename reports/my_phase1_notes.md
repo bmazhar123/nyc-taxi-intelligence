@@ -28,7 +28,7 @@ exact duplicate rows, every VendorID, RatecodeID, and payment\_type code
 
 matches the official data dictionary, and every pickup and drop-off zone
 
-exists in the zone lookup table. Column types are what I'd expect.
+exists in the zone lookup table.
 
 
 
