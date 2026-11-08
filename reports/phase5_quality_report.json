@@ -1,0 +1,142 @@
+[
+  {
+    "name": "01_rows_reconcile_end_to_end",
+    "check": "For every month, raw rows = warehouse rows + excluded rows.",
+    "severity": "error",
+    "why": "Proves the pipeline neither lost nor duplicated a single row between the downloaded files and the warehouse.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.1693502000416629
+  },
+  {
+    "name": "02_amounts_reconcile_end_to_end",
+    "check": "For every month, raw total_amount = warehouse total_amount + excluded total_amount, to the cent.",
+    "severity": "error",
+    "why": "Proves no money was lost or invented. Amounts are summed as DECIMAL so the comparison is exact, with no floating-point rounding drift.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.27603730000555515
+  },
+  {
+    "name": "03_views_reconcile_with_fact",
+    "check": "Every analysis view adds back up to the fact table (row counts and, where stored exactly, amounts).",
+    "severity": "error",
+    "why": "A view with a wrong JOIN can silently drop or duplicate trips; this catches it before a dashboard does.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 1.4738814999582246
+  },
+  {
+    "name": "04_trip_id_unique",
+    "check": "trip_id is unique in fact_trips.",
+    "severity": "error",
+    "why": "trip_id is the fact table's key; a duplicate means a trip is counted twice in every metric.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.43663119996199384
+  },
+  {
+    "name": "05_required_fields_not_null",
+    "check": "Columns every metric depends on are never NULL.",
+    "severity": "error",
+    "why": "NULL keys drop trips from joins; NULL amounts or times silently shrink sums and averages.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.7541448000119999
+  },
+  {
+    "name": "06_foreign_keys",
+    "check": "Every foreign key in fact_trips exists in its dimension (no orphan keys).",
+    "severity": "error",
+    "why": "An orphan key makes a trip vanish from any chart that uses that dimension, so totals disagree between pages.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.215200399979949
+  },
+  {
+    "name": "07_cleaning_rules_hold",
+    "check": "No trip in the warehouse breaks any Phase 2 exclusion rule.",
+    "severity": "error",
+    "why": "Re-tests the cleaning output independently, so a bug in the cleaning code cannot let impossible trips through unnoticed.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.4764627999975346
+  },
+  {
+    "name": "08_dim_date_complete",
+    "check": "dim_date has every calendar day between its first and last date, with no gaps or duplicates.",
+    "severity": "error",
+    "why": "A missing date makes daily trend lines skip days and makes \"per day\" averages divide by the wrong number.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.007908099971245974
+  },
+  {
+    "name": "09_every_day_has_trips",
+    "check": "Every date in the study period has at least one trip.",
+    "severity": "warn",
+    "why": "A day with zero trips in a city taxi dataset almost certainly means a missing or truncated source file, not a real absence of demand.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.036781700036954135
+  },
+  {
+    "name": "10_daily_volume_anomalies",
+    "check": "No day falls below 0.6 x the median of the same weekday in the same month.",
+    "severity": "warn",
+    "why": "A sudden collapse in volume is more often a data problem (partial file, vendor outage) than real demand; holidays and storms are legitimate exceptions to review.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.21573280001757666
+  },
+  {
+    "name": "11_tip_recording_gaps",
+    "check": "No large tip-eligible vendor x rate-code segment records tips on fewer than 5.0% of trips.",
+    "severity": "warn",
+    "why": "Phase 4 found rate code 99 records no tips at all. This check catches the NEXT gap like it automatically, instead of relying on someone spotting an odd chart.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.16557339997962117
+  },
+  {
+    "name": "12_flag_rate_shifts",
+    "check": "No quality flag's share of trips moves more than 5.0 percentage points from one month to the next.",
+    "severity": "warn",
+    "why": "A sudden shift (like Flex Fare in March 2024) changes how reliable some metrics are; it may be real, but it must be explained before month-to-month comparisons are trusted.",
+    "status": "FAIL",
+    "failing_rows": 2,
+    "error": null,
+    "seconds": 0.1366470000357367
+  },
+  {
+    "name": "13_monthly_removal_rate",
+    "check": "Cleaning removes no more than 5.0% of any month's raw rows.",
+    "severity": "warn",
+    "why": "Removal rates have been about 2-3%; a jump means either a much dirtier source file or a cleaning rule misbehaving.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.020369999983813614
+  },
+  {
+    "name": "14_catchall_zone_share",
+    "check": "No more than 3.0% of a month's trips start or end in catch-all zones 264/265.",
+    "severity": "warn",
+    "why": "Catch-all zones are excluded from maps and zone rankings, so if their share grows, geographic results quietly cover less of the data.",
+    "status": "PASS",
+    "failing_rows": 0,
+    "error": null,
+    "seconds": 0.09445319999940693
+  }
+]

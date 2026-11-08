@@ -173,3 +173,17 @@ UNKNOWN_KEY = -1  # dimension row used when a code is NULL ("Not recorded")
 # --------------------------------------------------------------------------
 SQL_DIR = PROJECT_ROOT / "sql"
 SQL_RESULTS_DIR = REPORTS_DIR / "sql_results"
+
+# --------------------------------------------------------------------------
+# Phase 5 -- data-quality checks
+# --------------------------------------------------------------------------
+CHECKS_DIR = SQL_DIR / "checks"
+# Warning thresholds (a failing "warn" check is reported but does not stop the pipeline)
+CHECK_PARAMS = {
+    "daily_drop_ratio": 0.6,       # a day below 60% of its same-weekday, same-month median
+    "min_segment_trips": 1000,     # tip-gap check only looks at segments this large
+    "min_pct_tipped": 5.0,         # tip-eligible segment where under 5% of trips record a tip
+    "max_flag_shift_pp": 5.0,      # a quality flag's share moving > 5 percentage points month to month
+    "max_removal_pct": 5.0,        # a month losing > 5% of raw rows in cleaning
+    "max_catchall_pct": 3.0,       # > 3% of trips in catch-all zones 264/265
+}

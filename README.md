@@ -1,6 +1,6 @@
 # NYC Taxi Intelligence: Revenue, Demand & Operations Analytics
 
-> **Status:** Phase 4 of 8 — ingestion, inspection, logged cleaning, a DuckDB star-schema warehouse, and 16 SQL analyses. Findings, dashboard, and results will be added as they are actually produced.
+> **Status:** Phase 5 of 8 — ingestion, inspection, logged cleaning, a DuckDB star-schema warehouse, 17 SQL analyses, and 14 automated data-quality checks. Findings, dashboard, and results will be added as they are actually produced.
 
 A portfolio analytics project using official NYC TLC yellow-taxi trip records (January–June 2024) to analyse trip demand, recorded fare amounts, geographic patterns, and operational efficiency for a *hypothetical* operations team. This is a simulation and is not affiliated with the NYC Taxi & Limousine Commission.
 
@@ -13,12 +13,13 @@ python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 
-pytest -q                      # unit tests (synthetic fixtures)
+pytest -q                      # unit tests + data tests against the real warehouse (if built)
 python -m src.download         # sample: January 2024 + zone lookup
 python -m src.inspect_data     # writes reports/phase1_inspection.md
 python -m src.clean            # writes data/processed/ + reports/phase2_cleaning_log.md
 python -m src.build_warehouse  # writes data/warehouse/taxi.duckdb + docs/data_dictionary.md
 python -m src.run_sql          # applies sql/views, runs sql/analysis -> reports/phase4_sql_results.md
+python -m src.quality_checks   # 14 reconciliation + quality checks -> reports/phase5_quality_report.md
 
 # or rebuild everything, Jan–Jun 2024, in one command:
 python -m src.pipeline --full
@@ -34,7 +35,7 @@ python -m src.pipeline --full
 
 ```
 src/          Python pipeline (download, inspect, clean, build warehouse, pipeline CLI)
-sql/          views/ (reusable analysis layer) and analysis/ (16 business queries)
+sql/          views/ (analysis layer), analysis/ (17 business queries), checks/ (14 quality checks)
 tests/        pytest suite
 notebooks/    Exploratory notebooks
 reports/      Generated reports (inspection, cleaning log, findings)

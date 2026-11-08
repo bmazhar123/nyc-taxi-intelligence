@@ -1,7 +1,7 @@
 """
 One command to rebuild everything, in order:
 
-    download  ->  inspect  ->  clean  ->  build warehouse  ->  SQL views + analysis
+    download -> inspect -> clean -> build warehouse -> SQL analysis -> quality checks
 
 Examples (from the project root):
   python -m src.pipeline --full                 # Jan-Jun 2024, end to end
@@ -17,7 +17,7 @@ import argparse
 import sys
 import time
 
-from src import build_warehouse, clean, config, download, inspect_data, run_sql
+from src import build_warehouse, clean, config, download, inspect_data, quality_checks, run_sql
 
 
 def step(name: str, fn) -> None:
@@ -37,12 +37,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if not a.skip_download:
         months = a.months or (config.MONTHS_FULL if a.full else config.MONTHS_SAMPLE)
-        step("1/5 download", lambda: download.run(months))
-    step("2/5 inspect raw files", lambda: inspect_data.main([]))
-    step("3/5 clean", lambda: clean.run(config.RAW_DIR, config.PROCESSED_DIR, config.REPORTS_DIR))
-    step("4/5 build warehouse", lambda: build_warehouse.run())
-    step("5/5 SQL views + analysis", lambda: run_sql.run())
-    print("\nPipeline complete. See reports/ for the inspection, cleaning, warehouse and SQL results.")
+        step("1/6 download", lambda: download.run(months))
+    step("2/6 inspect raw files", lambda: inspect_data.main([]))
+    step("3/6 clean", lambda: clean.run(config.RAW_DIR, config.PROCESSED_DIR, config.REPORTS_DIR))
+    step("4/6 build warehouse", lambda: build_warehouse.run())
+    step("5/6 SQL views + analysis", lambda: run_sql.run())
+    step("6/6 data-quality checks", lambda: quality_checks.run())   # stops here if an error-level check fails
+    print("\nPipeline complete. See reports/ for the inspection, cleaning, warehouse, SQL and quality reports.")
     return 0
 
 
