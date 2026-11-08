@@ -2,14 +2,14 @@
 
 Views applied: `01_v_trips`, `02_v_daily_kpis`, `03_v_hourly_demand`, `04_v_zone_daily`, `05_v_od_monthly`
 
-17 queries. Full results are in `reports/sql_results/*.csv`; query source is in `sql/analysis/`.
+18 queries. Full results are in `reports/sql_results/*.csv`; query source is in `sql/analysis/`.
 
 ## 01_monthly_kpis_mom
 
 **Question:** How did trips, recorded charges and average fare change month over month?  
 **Technique:** CTE + LAG window function for month-over-month % change.  
 **Caveat:** total_amount is the amount charged to passengers (incl. taxes, tolls, surcharges), not revenue or driver income. Months have different numbers of days, so trips per day is the fairer comparison.  
-_Ran in 0.3s, 6 row(s)._
+_Ran in 0.8s, 6 row(s)._
 
 | year_month | days | trips | trips_per_day | trips_per_day_mom_pct | total_amount | total_amount_mom_pct | avg_fare |
 |---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ _Ran in 0.3s, 6 row(s)._
 **Question:** How do weekdays and weekends differ in volume, fare, duration and tipping?  
 **Technique:** Aggregate daily rows first (so "per day" divides by real day counts), then compare groups; ratio-of-sums for rates.  
 **Caveat:** Holidays are counted under their weekday; tip % uses credit-card trips only because cash tips are not recorded.  
-_Ran in 0.5s, 2 row(s)._
+_Ran in 0.7s, 2 row(s)._
 
 | day_type | days | avg_trips_per_day | avg_fare | avg_distance_mi | avg_duration_min | fare_per_mile_std_rate | tip_pct_of_fare_card | airport_trip_pct |
 |---|---|---|---|---|---|---|---|---|
@@ -37,7 +37,7 @@ _Ran in 0.5s, 2 row(s)._
 **Question:** What does a typical day's demand curve look like, hour by hour, on weekdays vs weekends?  
 **Technique:** Average trips per hour (divided by number of days), plus each hour's share of the day using SUM() OVER (PARTITION BY ...).  
 **Caveat:** Averages hide variation between individual days; see query 11 for day-level trends.  
-_Ran in 0.4s, 48 row(s)._
+_Ran in 0.5s, 48 row(s)._
 
 | day_type | hour_label | time_band | avg_trips | pct_of_day |
 |---|---|---|---|---|
@@ -176,7 +176,7 @@ _Ran in 0.1s, 20 row(s)._
 **Question:** How do airport trips (JFK, LaGuardia, Newark) compare with all other trips?  
 **Technique:** CASE classification on joined zone attributes; ratio-of-sums metrics with FILTER.  
 **Caveat:** Airport trips include flat-rate JFK fares, so average fare differences partly reflect pricing rules, not only distance.  
-_Ran in 0.3s, 3 row(s)._
+_Ran in 0.2s, 3 row(s)._
 
 | trip_type | trips | pct_of_trips | pct_of_total_amount | avg_total_amount | avg_distance_mi | avg_duration_min | tip_pct_of_fare_card |
 |---|---|---|---|---|---|---|---|
@@ -285,7 +285,7 @@ _157 more rows in the CSV._
 **Question:** How much does demand drop on federal holidays compared with a typical day of the same weekday in the same month?  
 **Technique:** Self-referencing CTE: baseline = average of non-holiday days sharing the month and weekday, joined back to each holiday.  
 **Caveat:** Few holidays in six months; a baseline built from ~3-4 days is noisy. Treat as indicative.  
-_Ran in 0.2s, 5 row(s)._
+_Ran in 0.3s, 5 row(s)._
 
 | pickup_date | holiday_name | day_name | trips | typical_trips_same_weekday | baseline_days | pct_vs_typical |
 |---|---|---|---|---|---|---|
@@ -341,28 +341,28 @@ _Ran in 0.6s, 15 row(s)._
 
 | zone | borough | rank_first | rank_last | places_gained | pickups_first | pickups_last | pickups_change_pct |
 |---|---|---|---|---|---|---|---|
-| Lenox Hill East | Manhattan | 18 | 23 | -5 | 64,815 | 63,331 | -2.30 |
 | Financial District North | Manhattan | 48 | 43 | 5 | 11,852 | 22,306 | 88.20 |
+| Lenox Hill East | Manhattan | 18 | 23 | -5 | 64,815 | 63,331 | -2.30 |
 | Meatpacking/West Village West | Manhattan | 39 | 35 | 4 | 23,282 | 39,612 | 70.10 |
-| Lincoln Square West | Manhattan | 33 | 36 | -3 | 34,902 | 38,410 | 10.10 |
-| Lenox Hill West | Manhattan | 16 | 19 | -3 | 72,438 | 74,619 | 3.00 |
-| East Harlem South | Manhattan | 41 | 44 | -3 | 17,786 | 21,325 | 19.90 |
-| Morningside Heights | Manhattan | 44 | 47 | -3 | 13,534 | 14,897 | 10.10 |
 | Kips Bay | Manhattan | 35 | 38 | -3 | 32,177 | 35,937 | 11.70 |
-| Gramercy | Manhattan | 23 | 20 | 3 | 58,158 | 69,464 | 19.40 |
-| East Village | Manhattan | 19 | 16 | 3 | 64,522 | 82,000 | 27.10 |
 | Upper West Side South | Manhattan | 10 | 13 | -3 | 86,949 | 94,527 | 8.70 |
+| Lenox Hill West | Manhattan | 16 | 19 | -3 | 72,438 | 74,619 | 3.00 |
+| Morningside Heights | Manhattan | 44 | 47 | -3 | 13,534 | 14,897 | 10.10 |
+| East Harlem South | Manhattan | 41 | 44 | -3 | 17,786 | 21,325 | 19.90 |
+| Lincoln Square West | Manhattan | 33 | 36 | -3 | 34,902 | 38,410 | 10.10 |
+| East Village | Manhattan | 19 | 16 | 3 | 64,522 | 82,000 | 27.10 |
 | Bloomingdale | Manhattan | 49 | 52 | -3 | 7,698 | 8,784 | 14.10 |
-| Murray Hill | Manhattan | 12 | 10 | 2 | 81,306 | 100,942 | 24.20 |
+| Gramercy | Manhattan | 23 | 20 | 3 | 58,158 | 69,464 | 19.40 |
+| TriBeCa/Civic Center | Manhattan | 32 | 30 | 2 | 36,269 | 49,049 | 35.20 |
 | Greenwich Village North | Manhattan | 30 | 32 | -2 | 39,741 | 47,560 | 19.70 |
-| LaGuardia Airport | Queens | 9 | 7 | 2 | 87,674 | 112,571 | 28.40 |
+| Manhattan Valley | Manhattan | 38 | 40 | -2 | 23,892 | 27,180 | 13.80 |
 
 ## 15_duration_by_borough_band
 
 **Question:** How long do trips take from each borough at different times of day (median and 90th percentile)?  
 **Technique:** Ordered-set aggregates (median, quantile_cont) grouped by two dimensions.  
 **Caveat:** Long-duration trips (likely meters left running) excluded; medians used because durations are right-skewed.  
-_Ran in 0.7s, 20 row(s)._
+_Ran in 0.8s, 20 row(s)._
 
 | pu_borough | time_band | trips | median_min | p90_min | median_miles |
 |---|---|---|---|---|---|
@@ -432,3 +432,19 @@ _Ran in 0.2s, 20 row(s)._
 | Curb Mobility, LLC | Nassau or Westchester | Manhattan | 5,171 | 87.00 | 16.80 | 0.03 |
 | Curb Mobility, LLC | Newark | Queens | 4,179 | 88.80 | 17.00 | 0.03 |
 | Creative Mobile Technologies, LLC | Newark | Manhattan | 8,275 | 92.20 | 19.80 | 0.05 |
+
+## 18_tip_gap_by_borough
+
+**Question:** How much of each borough's credit-card data falls in the tip-recording gap, and how do tipping figures change once it is excluded?  
+**Technique:** Conditional aggregation computing the same metric with and without a segment, side by side (a before/after comparison in one pass).  
+**Caveat:** The gap (rate code 99) is small citywide but concentrated in the outer boroughs; tip figures describe card payers only, since cash tips are not recorded.  
+_Ran in 0.2s, 6 row(s)._
+
+| pu_borough | card_trips | gap_trips | pct_in_gap | pct_tipped_incl_gap | pct_tipped_excl_gap | tip_pct_of_fare_incl_gap | tip_pct_of_fare_excl_gap |
+|---|---|---|---|---|---|---|---|
+| Manhattan | 13,543,800 | 62,340 | 0.50 | 95.80 | 96.20 | 23.40 | 23.60 |
+| Queens | 1,343,331 | 39,432 | 2.90 | 91.20 | 93.90 | 20.20 | 20.60 |
+| Brooklyn | 126,766 | 81,881 | 64.60 | 30.70 | 86.80 | 6.10 | 19.10 |
+| Bronx | 32,948 | 29,510 | 89.60 | 5.10 | 49.00 | 1.30 | 11.90 |
+| EWR | 2,111 | 0 | 0.00 | 70.30 | 70.30 | 14.00 | 14.00 |
+| Staten Island | 116 | 1 | 0.90 | 73.30 | 73.90 | 18.00 | 18.10 |

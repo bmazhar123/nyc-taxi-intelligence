@@ -1,6 +1,6 @@
 # NYC Taxi Intelligence: Revenue, Demand & Operations Analytics
 
-> **Status:** Phase 5 of 8 — ingestion, inspection, logged cleaning, a DuckDB star-schema warehouse, 17 SQL analyses, and 14 automated data-quality checks. Findings, dashboard, and results will be added as they are actually produced.
+> **Status:** Phase 6 of 8 — pipeline, warehouse, 18 SQL analyses, 14 data-quality checks, and fact-checked business findings ([reports/phase6_business_findings.md](reports/phase6_business_findings.md)). Findings, dashboard, and results will be added as they are actually produced.
 
 A portfolio analytics project using official NYC TLC yellow-taxi trip records (January–June 2024) to analyse trip demand, recorded fare amounts, geographic patterns, and operational efficiency for a *hypothetical* operations team. This is a simulation and is not affiliated with the NYC Taxi & Limousine Commission.
 
@@ -35,7 +35,7 @@ python -m src.pipeline --full
 
 ```
 src/          Python pipeline (download, inspect, clean, build warehouse, pipeline CLI)
-sql/          views/ (analysis layer), analysis/ (17 business queries), checks/ (14 quality checks)
+sql/          views/ (analysis layer), analysis/ (18 business queries), checks/ (14 quality checks)
 tests/        pytest suite
 notebooks/    Exploratory notebooks
 reports/      Generated reports (inspection, cleaning log, findings)

@@ -1,16 +1,16 @@
 zone,borough,rank_first,rank_last,places_gained,pickups_first,pickups_last,pickups_change_pct
-Lenox Hill East,Manhattan,18,23,-5,64815,63331,-2.3
 Financial District North,Manhattan,48,43,5,11852,22306,88.2
+Lenox Hill East,Manhattan,18,23,-5,64815,63331,-2.3
 Meatpacking/West Village West,Manhattan,39,35,4,23282,39612,70.1
-Lincoln Square West,Manhattan,33,36,-3,34902,38410,10.1
-Lenox Hill West,Manhattan,16,19,-3,72438,74619,3.0
-East Harlem South,Manhattan,41,44,-3,17786,21325,19.9
-Morningside Heights,Manhattan,44,47,-3,13534,14897,10.1
 Kips Bay,Manhattan,35,38,-3,32177,35937,11.7
-Gramercy,Manhattan,23,20,3,58158,69464,19.4
-East Village,Manhattan,19,16,3,64522,82000,27.1
 Upper West Side South,Manhattan,10,13,-3,86949,94527,8.7
+Lenox Hill West,Manhattan,16,19,-3,72438,74619,3.0
+Morningside Heights,Manhattan,44,47,-3,13534,14897,10.1
+East Harlem South,Manhattan,41,44,-3,17786,21325,19.9
+Lincoln Square West,Manhattan,33,36,-3,34902,38410,10.1
+East Village,Manhattan,19,16,3,64522,82000,27.1
 Bloomingdale,Manhattan,49,52,-3,7698,8784,14.1
-Murray Hill,Manhattan,12,10,2,81306,100942,24.2
+Gramercy,Manhattan,23,20,3,58158,69464,19.4
+TriBeCa/Civic Center,Manhattan,32,30,2,36269,49049,35.2
 Greenwich Village North,Manhattan,30,32,-2,39741,47560,19.7
-LaGuardia Airport,Queens,9,7,2,87674,112571,28.4
+Manhattan Valley,Manhattan,38,40,-2,23892,27180,13.8
