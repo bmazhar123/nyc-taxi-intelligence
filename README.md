@@ -1,6 +1,6 @@
 # NYC Taxi Intelligence: Revenue, Demand & Operations Analytics
 
-> **Status:** Phase 6 of 8 — pipeline, warehouse, 18 SQL analyses, 14 data-quality checks, and fact-checked business findings ([reports/phase6_business_findings.md](reports/phase6_business_findings.md)). Findings, dashboard, and results will be added as they are actually produced.
+> **Status:** Phase 7 of 8 — pipeline, warehouse, 18 SQL analyses, 14 data-quality checks, fact-checked business findings, and a Power BI build kit ([dashboards/powerbi_build_guide.md](dashboards/powerbi_build_guide.md)) ([reports/phase6_business_findings.md](reports/phase6_business_findings.md)). Findings, dashboard, and results will be added as they are actually produced.
 
 A portfolio analytics project using official NYC TLC yellow-taxi trip records (January–June 2024) to analyse trip demand, recorded fare amounts, geographic patterns, and operational efficiency for a *hypothetical* operations team. This is a simulation and is not affiliated with the NYC Taxi & Limousine Commission.
 
@@ -20,6 +20,8 @@ python -m src.clean            # writes data/processed/ + reports/phase2_cleanin
 python -m src.build_warehouse  # writes data/warehouse/taxi.duckdb + docs/data_dictionary.md
 python -m src.run_sql          # applies sql/views, runs sql/analysis -> reports/phase4_sql_results.md
 python -m src.quality_checks   # 14 reconciliation + quality checks -> reports/phase5_quality_report.md
+python -m src.zone_centroids   # map points for each taxi zone (one-time)
+python -m src.export_powerbi   # reconciled tables for Power BI -> dashboards/data/
 
 # or rebuild everything, Jan–Jun 2024, in one command:
 python -m src.pipeline --full
@@ -39,7 +41,7 @@ sql/          views/ (analysis layer), analysis/ (18 business queries), checks/ 
 tests/        pytest suite
 notebooks/    Exploratory notebooks
 reports/      Generated reports (inspection, cleaning log, findings)
-dashboards/   Power BI file and build specification
+dashboards/   Power BI build guide, theme, and (once built) the .pbix and PDF
 images/       Screenshots and diagrams
 docs/         Project plan, generated data dictionary
 data/         raw/ processed/ warehouse/ (git-ignored except manifest)

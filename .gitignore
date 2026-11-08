@@ -20,3 +20,6 @@ Thumbs.db
 .idea/
 # Power BI temp/backup files (the .pbix itself is committed once built)
 *.pbix.bak
+
+# Power BI export tables (regenerate with: python -m src.export_powerbi)
+dashboards/data/

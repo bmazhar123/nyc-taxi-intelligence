@@ -7,3 +7,6 @@ pytest>=8
 # Later phases (optional now):
 plotly>=5.20
 jupyter>=1.0
+# Phase 7: zone map points from the official taxi-zone shapefile
+pyshp>=2.3
+pyproj>=3.6

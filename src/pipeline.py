@@ -1,7 +1,7 @@
 """
 One command to rebuild everything, in order:
 
-    download -> inspect -> clean -> build warehouse -> SQL analysis -> quality checks
+    download -> inspect -> clean -> build warehouse -> SQL analysis -> quality checks -> Power BI export
 
 Examples (from the project root):
   python -m src.pipeline --full                 # Jan-Jun 2024, end to end
@@ -17,7 +17,18 @@ import argparse
 import sys
 import time
 
-from src import build_warehouse, clean, config, download, inspect_data, quality_checks, run_sql
+from src import (build_warehouse, clean, config, download, export_powerbi, inspect_data, quality_checks,
+                 run_sql, zone_centroids)
+
+
+def powerbi_export(allow_download: bool) -> None:
+    """Build zone map points if they're missing (and possible), then export the dashboard tables."""
+    if not config.ZONE_CENTROIDS_PATH.exists():
+        if config.ZONE_SHAPEFILE_ZIP.exists() or allow_download:
+            zone_centroids.run(download=allow_download)
+        else:
+            print("  skipping zone map points: shapefile not downloaded (run `python -m src.zone_centroids`)")
+    export_powerbi.run()
 
 
 def step(name: str, fn) -> None:
@@ -37,13 +48,14 @@ def main(argv: list[str] | None = None) -> int:
 
     if not a.skip_download:
         months = a.months or (config.MONTHS_FULL if a.full else config.MONTHS_SAMPLE)
-        step("1/6 download", lambda: download.run(months))
-    step("2/6 inspect raw files", lambda: inspect_data.main([]))
-    step("3/6 clean", lambda: clean.run(config.RAW_DIR, config.PROCESSED_DIR, config.REPORTS_DIR))
-    step("4/6 build warehouse", lambda: build_warehouse.run())
-    step("5/6 SQL views + analysis", lambda: run_sql.run())
-    step("6/6 data-quality checks", lambda: quality_checks.run())   # stops here if an error-level check fails
-    print("\nPipeline complete. See reports/ for the inspection, cleaning, warehouse, SQL and quality reports.")
+        step("1/7 download", lambda: download.run(months))
+    step("2/7 inspect raw files", lambda: inspect_data.main([]))
+    step("3/7 clean", lambda: clean.run(config.RAW_DIR, config.PROCESSED_DIR, config.REPORTS_DIR))
+    step("4/7 build warehouse", lambda: build_warehouse.run())
+    step("5/7 SQL views + analysis", lambda: run_sql.run())
+    step("6/7 data-quality checks", lambda: quality_checks.run())   # stops here if an error-level check fails
+    step("7/7 Power BI export", lambda: powerbi_export(allow_download=not a.skip_download))
+    print("\nPipeline complete. See reports/ for the inspection, cleaning, warehouse, SQL, quality and dashboard-validation reports.")
     return 0
 
 

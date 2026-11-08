@@ -187,3 +187,11 @@ CHECK_PARAMS = {
     "max_removal_pct": 5.0,        # a month losing > 5% of raw rows in cleaning
     "max_catchall_pct": 3.0,       # > 3% of trips in catch-all zones 264/265
 }
+
+# --------------------------------------------------------------------------
+# Phase 7 -- Power BI export
+# --------------------------------------------------------------------------
+DASHBOARD_DIR = PROJECT_ROOT / "dashboards"
+POWERBI_DATA_DIR = DASHBOARD_DIR / "data"
+ZONE_SHAPEFILE_ZIP = RAW_DIR / "taxi_zones.zip"
+ZONE_CENTROIDS_PATH = PROCESSED_DIR / "zone_centroids.csv"
